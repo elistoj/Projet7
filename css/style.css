@@ -87,3 +87,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
 }
+.filters_numbers{
+    display: flex;
+    justify-content: space-between;
+}

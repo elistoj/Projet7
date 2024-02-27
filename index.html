@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Liaison avec le fichier de style CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+        <!-- Liaison avec la police de caractères provenant de Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton" >
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+    <title>Les petits plats</title>
+</head>
+<body>
+<!-- En-tête avec le logo et le titre -->
+<header>
+    <div class="logo_images">
+        <img src="photos/logo/logo_plats.jpg" class="logo" alt="logo des Petits plats" tabindex="0" >
+        <img src="photos/logo/assets.png" class="photo_asset" alt="photo des assets" tabindex="0" >
+    </div>
+    <h1 tabindex="0">CHERCHEZ PARMI PLUS DE 1500 RECETTES <br>
+        DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
+        <form action="#" id="formulaire" method="post" name="formulaire">
+            <input class=recipes-search name="search_recipes" 
+                   placeholder="Rechercher une recette, un ingrédient, ..." type="text"> 
+            <button class="research__recipes__submit" type="submit">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </button>    
+        </form>
+        <img src="photos/header/header_photo.png" class="header_photo" alt="header_photo" tabindex="0" >
+    </header>
+<!-- Section principale de la page -->
+<main id="main">
+    <div class="search__fields">
+        <form class="ingredient__form">
+            <input
+                class="ingredient__input"
+                placeholder="Ingrédient"
+                type="search"
+            />
+            <button class="ingredient__button" type="button">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </form>
+        <aside class="results__ingredient">
+            <ul class="ingredient__results__undisplayed"></ul>
+        </aside>
+        <form class="apparatus__form">
+            <input
+                class="apparatus__input"
+                placeholder="Appareil"
+                type="search"
+            />
+            <button class="apparatus__button" type="button">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </form>
+        <aside class="results__apparatus">
+            <ul class="apparatus__results__undisplayed"></ul>
+        </aside>
+        <form class="ustensils__form">
+            <input
+                class="ustensils__input"
+                placeholder="Ustensiles"
+                type="search"
+            />
+            <button class="ustensils__button" type="button">
+                <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+        </form>
+        <aside class="results__ustensils">
+            <ul class="ustensils__results__undisplayed"></ul>
+        </aside>
+    </div>
+    <!-- Section pour afficher les recettes -->
+    <div class="recipes_section">
+<!-- Les recettes sont générées dynamiquement ici -->
+  </div>
+  </main>
+  </body>
+</html>

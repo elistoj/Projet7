@@ -85,37 +85,66 @@ class Dropdown {
         this.itemList = null;
     }
 
-    // Méthode pour créer le dropdown
-    createDropdown() {
-        const dropdownContent = `
-                <div class="dropdown"> 
-                    <button class="dropdown_btn" type="button">
-                        <span>${this.name}</span>
-                        <span class="fa-solid fa-chevron-down" aria-hidden="true"></span>
-                    </button>
+    // Metoda za normalizaciju stringova
+    static normalizeString(str) {
+        return str.trim().toLowerCase();
+    }
 
-                    <div class="dropdown_content">
-                        <div>
-                            <input tabindex="-1" type="text" id="search-${this.name}" maxlength="12">
-                            <button tabindex="-1"></button>
-                            <label for="search-${this.name}" aria-label="Search by ${this.name}"></label>
-                        </div>
-                        <ul class="dropdown_content_list">
-                            ${this.items.map(item => `<li>${item}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>                          
-        `;
+    // Metoda za kreiranje dropdown-a
+    createDropdown() {
         const dropdownWrapper = document.createElement('div');
         dropdownWrapper.setAttribute('class', 'dropdown_wrapper');
-        dropdownWrapper.innerHTML = dropdownContent;
 
-        const inputElement = dropdownWrapper.querySelector(`#search-${this.name}`);
-        this.itemList = dropdownWrapper.querySelectorAll('.dropdown_content_list li');
+        const dropdown = document.createElement('div');
+        dropdown.classList.add('dropdown');
+
+        const button = document.createElement('button');
+        button.classList.add('dropdown_btn');
+        button.type = 'button';
+        button.innerHTML = `
+            <span>${this.name}</span>
+            <span class="fa-solid fa-chevron-down" aria-hidden="true"></span>
+        `;
+
+        const dropdownContent = document.createElement('div');
+        dropdownContent.classList.add('dropdown_content');
+
+        const searchDiv = document.createElement('div');
+        const inputElement = document.createElement('input');
+        inputElement.setAttribute('tabindex', '-1');
+        inputElement.type = 'text';
+        inputElement.id = `search-${this.name}`;
+        inputElement.setAttribute('maxlength', '12');
+        const searchButton = document.createElement('button');
+        searchButton.setAttribute('tabindex', '-1');
+        const searchLabel = document.createElement('label');
+        searchLabel.htmlFor = `search-${this.name}`;
+        searchLabel.setAttribute('aria-label', `Search by ${this.name}`);
+
+        searchDiv.appendChild(inputElement);
+        searchDiv.appendChild(searchButton);
+        searchDiv.appendChild(searchLabel);
+
+        const itemList = document.createElement('ul');
+        itemList.classList.add('dropdown_content_list');
+        this.items.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            itemList.appendChild(li);
+        });
+
+        dropdownContent.appendChild(searchDiv);
+        dropdownContent.appendChild(itemList);
+
+        dropdown.appendChild(button);
+        dropdown.appendChild(dropdownContent);
+
+        dropdownWrapper.appendChild(dropdown);
+
+        this.itemList = itemList.querySelectorAll('li');
 
         inputElement.addEventListener('input', () => {
-            this.search(normalizeString(inputElement.value));
-            this.toggleDeleteBtn(inputElement);
+            this.search(Dropdown.normalizeString(inputElement.value));
         });
 
         this.tagHandler(inputElement);
@@ -123,8 +152,8 @@ class Dropdown {
         return dropdownWrapper;
     }
 
-    // Méthode pour mettre à jour les items du dropdown
-    updateItems(filteredItems, _inputValue, match) {
+    // Metoda za ažuriranje stavki dropdown-a
+    updateItems(filteredItems, inputValue, match) {
         this.filteredItems = filteredItems;
 
         this.itemList.forEach(item => item.style.display = 'none');
@@ -132,54 +161,55 @@ class Dropdown {
         let items = match ? match : this.filteredItems;
 
         items.forEach(itemText => {
-            const itemElement = [...this.itemList].find(item => normalizeString(item.textContent) === normalizeString(itemText));
+            const itemElement = [...this.itemList].find(item => Dropdown.normalizeString(item.textContent) === Dropdown.normalizeString(itemText));
             if (itemElement)
                 itemElement.style.display = 'block';
         });
     }
 
-    // Méthode pour effectuer la recherche dans le dropdown
+    // Metoda za pretragu u dropdown-u
     search(inputValue) {
         const itemsToSearch = !this.filteredItems.length ? this.items : this.filteredItems;
 
         const match = itemsToSearch.filter(item => {
-            const normalizedItem = normalizeString(item);
+            const normalizedItem = Dropdown.normalizeString(item);
             return normalizedItem.includes(inputValue);
         });
 
-        this.updateItems(this.filteredItems, inputValue, match)
+        this.updateItems(this.filteredItems, inputValue, match);
     }
 
-    // Méthode pour réinitialiser les items du dropdown
+    // Metoda za resetovanje stavki dropdown-a
     resetItemList() {
         this.itemList.forEach(item => item.style.display = 'block');
         this.filteredItems = [];
     }
 
-    // Méthode pour gérer l'ajout de tag dans le dropdown
+    // Metoda za upravljanje dodavanjem tagova u dropdown
     tagHandler(inputElement) {
         this.itemList.forEach(item => {
             item.addEventListener('click', () => {
-                this.addTag(item.textContent)
+                this.addTag(item.textContent);
                 inputElement.value = '';
             });
             item.addEventListener('keydown', e => {
-                if (e.key === 'Enter') this.addTag(item.textContent)
+                if (e.key === 'Enter') this.addTag(item.textContent);
                 inputElement.value = '';
             });
         });
     }
 
-    // Méthode pour ajouter un tag
+    // Metoda za dodavanje taga
     addTag(tagText) {
         if (!selectedTags.includes(tagText)) {
-            const tag = new Tag(tagText);
-            tag.createTag();
-            selectedTags.push(tagText);
+            const tag = new Tag(tagText); // Pretpostavljam da je ova linija u redu
+            tag.createTag(); // Pretpostavljam da je ova linija u redu
+            selectedTags.push(tagText); // Pretpostavljam da je ova linija u redu
         }
-        filterRecipesByLabels(currentRecipes, selectedTags);
+        filterRecipesByLabels(currentRecipes, selectedTags); // Ova linija izgleda u redu
     }
 }
+
 
 
 // Fonction pour extraire les propriétés uniques des recettes

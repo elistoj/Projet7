@@ -4,55 +4,67 @@ export default class CardRecipe {
     constructor(recipe) {
         this.recipe = recipe;
     }
-    // Méthode pour créer la carte de recette
+    // Créer la carte de recette
     createCard() {
-        const cardSection = document.querySelector('.card_section');
-        const cardContent = `
-        <article class="card" data-id=${this.recipe.id}> // Balise représentant une carte de recette avec l'identifiant de la recette
-        ${
-            this.recipe.time > 0
-                ? ` <p class="card_time"> // Paragraphe affichant le temps de préparation si le temps est supérieur à zéro
-                    ${
-                        this.recipe.time > 60
-                            ? `${Math.floor(this.recipe.time / 60)} h ${this.recipe.time % 60}` // Si le temps est supérieur à 60 minutes, affiche les heures et les minutes restantes
-                            : `${this.recipe.time} min` // Sinon, affiche seulement les minutes
-                    }
-                    </p>`
-                : ''
+        const cardArticle = document.createElement('article');
+        cardArticle.classList.add('card');
+        cardArticle.setAttribute('data-id', this.recipe.id);
+    
+        if (this.recipe.time > 0) {
+            const timeParagraph = document.createElement('p');
+            timeParagraph.classList.add('card_time');
+            if (this.recipe.time > 60) {
+                timeParagraph.textContent = `${Math.floor(this.recipe.time / 60)} h ${this.recipe.time % 60} min`;
+            } else {
+                timeParagraph.textContent = `${this.recipe.time} min`;
+            }
+            cardArticle.appendChild(timeParagraph);
         }
-        <img src="./photos/photos_plats/${this.recipe.image}" alt="${this.recipe.name}"> // Image de la recette avec le nom de la recette comme texte alternatif
-        <div class="card_infos"> // Div contenant les informations de la carte de recette
-            <h2>${this.recipe.name}</h2> // Titre de la recette
-            <div class="card_infos_instructions"> // Div contenant les instructions de la recette
-                <h3>Recette</h3> // Titre des instructions de la recette
-                <p>${this.recipe.description}</p> // Paragraphe affichant la description de la recette
-            </div>
-            <div class="card_infos_ingredients"> // Div contenant les ingrédients de la recette
-                <h3>Ingrédients</h3> // Titre des ingrédients de la recette
-                <ul>
-                    ${this.recipe.ingredients.map(ingredient => { // Liste des ingrédients de la recette
-                        if (ingredient.quantity && ingredient.unit) { // Vérifie si la quantité et l'unité sont définies pour l'ingrédient
-                            return `
-                                <li>
-                                    <span>${ingredient.ingredient}</span> // Nom de l'ingrédient
-                                    <span>${ingredient.quantity} ${ingredient.unit}</span> // Quantité et unité de l'ingrédient
-                                </li>
-                                    `;
-                        } else {
-                            return `
-                                <li>
-                                    <span>${ingredient.ingredient}</span> // Nom de l'ingrédient
-                                </li>
-                                    `;
-                        }
-                    }).join('')} 
-                </ul>
-            </div>
-        </div>
-    </article>
-</section>
-        `;
-
-        cardSection.innerHTML += cardContent;
+    
+        const imageElement = document.createElement('img');
+        imageElement.src = `./photos/photos_plats/${this.recipe.image}`;
+        imageElement.alt = this.recipe.name;
+        cardArticle.appendChild(imageElement);
+    
+        const cardInfosDiv = document.createElement('div');
+        cardInfosDiv.classList.add('card_infos');
+    
+        const nameHeader = document.createElement('h2');
+        nameHeader.textContent = this.recipe.name;
+        cardInfosDiv.appendChild(nameHeader);
+    
+        const instructionsDiv = document.createElement('div');
+        instructionsDiv.classList.add('card_infos_instructions');
+        const instructionsHeader = document.createElement('h3');
+        instructionsHeader.textContent = 'Recette';
+        const instructionsParagraph = document.createElement('p');
+        instructionsParagraph.textContent = this.recipe.description;
+        instructionsDiv.appendChild(instructionsHeader);
+        instructionsDiv.appendChild(instructionsParagraph);
+        cardInfosDiv.appendChild(instructionsDiv);
+    
+        const ingredientsDiv = document.createElement('div');
+        ingredientsDiv.classList.add('card_infos_ingredients');
+        const ingredientsHeader = document.createElement('h3');
+        ingredientsHeader.textContent = 'Ingrédients';
+        const ingredientsList = document.createElement('ul');
+        this.recipe.ingredients.forEach(ingredient => {
+            const ingredientItem = document.createElement('li');
+            if (ingredient.quantity && ingredient.unit) {
+                ingredientItem.innerHTML = `<span>${ingredient.ingredient}</span><span>${ingredient.quantity} ${ingredient.unit}</span>`;
+            } else {
+                ingredientItem.innerHTML = `<span>${ingredient.ingredient}</span>`;
+            }
+            ingredientsList.appendChild(ingredientItem);
+        });
+        ingredientsDiv.appendChild(ingredientsHeader);
+        ingredientsDiv.appendChild(ingredientsList);
+        cardInfosDiv.appendChild(ingredientsDiv);
+    
+        cardArticle.appendChild(cardInfosDiv);
+    
+        const cardSection = document.querySelector('.card_section');
+        cardSection.appendChild(cardArticle);
     }
+    
 }

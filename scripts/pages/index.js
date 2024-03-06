@@ -1,17 +1,5 @@
-import CardRecipe from '../utils/CardRecipe.js';
-
-// Učitavanje podataka iz datoteke koristeći fetch
-const fetchRecipes = async () => {
-    try {
-        const response = await fetch('./datas/recipes.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return await response.json();
-    } catch (error) {
-        throw new Error('There was a problem fetching the recipes');
-    }
-};
+import CardRecipe from '../cards/CardRecipe.js';
+import { fetchRecipes } from '../utils/fetchRecipes.js';
 
 
 // Prikaz kartica recepata
@@ -24,9 +12,6 @@ const displayRecipesCards = async () => {
         });
     }
 };
-
-
-
 
 
 

@@ -7,6 +7,7 @@
 	padding: 0;
     list-style: none;
 }
+
 main {
 	width: 100%;
 	max-width: 1440px;
@@ -24,6 +25,10 @@ body {
 a {
 	text-decoration: none;
 }
+button, label {
+    cursor: pointer;
+  }
+  
 
 .logo_images{
     position: absolute;
@@ -43,6 +48,18 @@ h1 {
     z-index: 1;
     display: flex;
 }
+.tag {
+    width: 190px;
+    height: 60px;
+    border-radius: 10px;
+    padding: 15px;
+    font-family: "Manrope", sans-serif;
+    background-color: #FFD15B;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 .header_photo{
     object-fit: cover;
     position: relative;
@@ -58,7 +75,7 @@ h1 {
     display: flex;
     justify-content: space-between;
 }
-.recipes-search{
+#search-recipe{
     color: var(--Grey, #7A7A7A);
     font-size: 16px;
     font-style: normal;
@@ -68,6 +85,7 @@ h1 {
     border: #FFF;
     border-radius: 11px;
 }
+
 .fa-search{
     color: #FFF;
     width: 51px;

@@ -4,40 +4,55 @@
     <!-- Liaison avec le fichier de style CSS -->
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <meta charset="utf-8">
-        <!-- Liaison avec la police de caractères provenant de Google Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton" >
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
-        
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+    <!-- Liaison avec la police de caractères provenant de Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+    <!-- Liaison avec la bibliothèque Font Awesome pour les icônes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
     <title>Les petits plats</title>
 </head>
 <body>
 <!-- En-tête avec le logo et le titre -->
 <header>
     <div class="logo_images">
-        <img src="./photos/logo/logo_plats.jpg" class="logo" alt="logo des Petits plats" tabindex="0" >
-        <img src="./photos/logo/assets.png" class="photo_asset" alt="photo des assets" tabindex="0" >
+        <!-- Logo des Petits plats -->
+        <img src="./photos/logo/logo_plats.jpg" class="logo" alt="logo des Petits plats" tabindex="0">
+        <!-- Photo des assets -->
+        <img src="./photos/logo/assets.png" class="photo_asset" alt="photo des assets" tabindex="0">
     </div>
-    <h1 tabindex="0">CHERCHEZ PARMI PLUS DE 1500 RECETTES <br>
-        DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
-        <form action="#" id="formulaire" method="post" name="formulaire">
-            <input class=recipes-search id="search-recipe" name="search_recipes" 
-                   placeholder="Rechercher une recette, un ingrédient, ..." type="text"> 
-            <button class="research__recipes__submit" type="submit">
+    
+    <div class="header_text">
+        <!-- Titre principal -->
+        <h1 tabindex="0">CHERCHEZ PARMI PLUS DE 1500 RECETTES <br>
+            DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
+        </h1>
+        <!-- Formulaire de recherche -->
+        <div id="formulaire">
+            <!-- Champ de recherche -->
+            <input type="text" id="search-recipe" placeholder="Rechercher une recette, un ingrédient,..." maxlength="50">
+            <!-- Bouton de recherche -->
+            <button class="research__recipes__submit" aria-hidden="true" aria-label="Clear search" type="button">
                 <em class="fas fa-search" aria-hidden="true"></em>
-            </button>    
-        </form>
-        <img src="./photos/header/header_photo.png" class="header_photo" alt="header_photo" tabindex="0" >
-    </header>
+            </button>
+            <!-- Étiquette pour le champ de recherche -->
+            <label for="search-recipe" tabindex="0" aria-label="Search recipe"></label>
+        </div>    
+    </div>
+    <!-- Image d'en-tête -->
+    <img src="./photos/header/header_photo.png" class="header_photo" alt="header_photo" tabindex="0">
+</header>
 <!-- Section principale de la page -->
 <main id="main">
-    
-<div class="filter_section">
-    <p class="recipes_count"></p>
-</div>
-<div class="tag_section"></div>
-<div class="card_section"></div>  
+    <!-- Section pour afficher le nombre de recettes -->
+    <div class="filter_section">
+        <p class="recipes_count"></p>
+    </div>
+    <!-- Section pour afficher les tags -->
+    <div class="tag_section"></div>
+    <!-- Section pour afficher les cartes de recettes -->
+    <div class="card_section"></div>  
 </main>
-  <script type="module" src="./scripts/pages/index.js"></script>
-  </body>
+<!-- Script JavaScript pour la logique de la page -->
+<script type="module" src="./scripts/pages/index.js"></script>
+</body>
 </html>

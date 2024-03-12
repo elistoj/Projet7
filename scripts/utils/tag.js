@@ -14,12 +14,10 @@ export default class Tag {
         const tagSection = document.querySelector('.tag_section');
 
         // Création du HTML pour le tag
-        const tag = `
-            <div class="tag">
-                <h3>${this.name}</h3>
-                <button></button>
-            </div>
-        `;
+    const tag = `
+        ${this.name}
+        [X]
+    `;
 
         // Ajout du tag à la section des tags dans le DOM
         tagSection.innerHTML += tag;

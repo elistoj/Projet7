@@ -10,48 +10,47 @@ export default class Tag {
 
     // Méthode pour créer un tag dans l'interface utilisateur
     createTag(tags) {
-        // Sélection de la section des tags dans le DOM
         const tagSection = document.querySelector('.tag_section');
-
-        // Création du HTML pour le tag
-    const tag = `
-        ${this.name}
-        [X]
-    `;
-
-        // Ajout du tag à la section des tags dans le DOM
-        tagSection.innerHTML += tag;
-
-        // Sélection de tous les boutons de tag dans le DOM
-        const tagBtn = tagSection.querySelectorAll('button');
-
-        // Ajout d'un écouteur d'événement de clic à chaque bouton de tag pour supprimer le tag
-        tagBtn.forEach(btn => btn.addEventListener('click', () => this.removeTag(tags)));
-
+        const tag = document.createElement('div');
+        tag.classList.add('tag');
+        tag.innerHTML = `
+            ${this.name}
+            <button class="remove_tag_btn"></button>
+        `;
+        tagSection.appendChild(tag);
+    
+        // Селектирање на копчето за бришење на тагот во тагот
+        const removeBtn = tag.querySelector('.remove_tag_btn');
+    
+        // Додавање на слушател за клик на копчето за бришење
+        removeBtn.addEventListener('click', () => this.removeTag(tag));
+    
         return tag;
     }
-
+    
     // Méthode pour supprimer un tag
-    removeTag(tags) {
-        // Récupération de la valeur de recherche actuelle
-        const inputValue = document.querySelector('#search-recipe').value;
-
-        // Sélection du tag parent à supprimer
-        const tag = this.closest('.tag');
-
+    removeTag(tag) {
         // Enlever les espaces autour du texte du tag
-        const tagName = tag.textContent.trim();
+        const tagName = this.name.trim();
 
         // Suppression du tag de la liste des tags sélectionnés
-        selectedTags.splice(selectedTags.indexOf(tagName), 1);
+        const tagIndex = selectedTags.indexOf(tagName);
+        if (tagIndex !== -1) {
+            selectedTags.splice(tagIndex, 1);
+        }
 
         // Filtrer les recettes avec les tags sélectionnés et la valeur de recherche actuelle
+        const inputValue = document.querySelector('#search-recipe').value;
         filterRecipes(allRecipes, selectedTags, inputValue);
 
         // Suppression du tag du DOM
         tag.remove();
     }
 }
+
+
+
+
 //Ce code définit une classe Tag pour créer et gérer les tags dans l'interface utilisateur. 
 //La méthode createTag crée un tag et l'ajoute à la section des tags dans le DOM. 
 //La méthode removeTag supprime un tag lorsque son bouton est cliqué, 

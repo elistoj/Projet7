@@ -37,3 +37,5 @@ export const filterRecipesByLabels = (recipes, tags) => {
 //Ce code définit une fonction filterRecipesByLabels qui prend en entrée une liste de recettes et des étiquettes de filtre. Il filtre ensuite les recettes
 // en fonction de ces étiquettes et met à jour le tableau recipesFilteredByLabels avec les recettes filtrées. 
 //Enfin, il met à jour l'affichage avec les recettes filtrées en appelant les fonctions updateCurrentRecipes et updateWithFilteredRecipes.
+
+

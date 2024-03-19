@@ -65,7 +65,7 @@ h1 {
 }
 .tag {
     width: 120px;
-    height: 30px;
+    height: 25px;
     border-radius: 10px;
     padding: 15px;
     font-family: "Manrope", sans-serif;
@@ -74,7 +74,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-left: 170px;
+    margin-left: 150px;
   }
   .tag h3 {
     font-size: 1.1rem;
@@ -84,6 +84,7 @@ h1 {
     position: relative;
     right:-30px;
     background-color: #FFD15B;
+    border:none
   }
   .tag button:hover::after, .tag button:focus::after {
     color: #fff;
@@ -142,7 +143,9 @@ h1 {
     border: #FFF;
     border-radius: 11px;
 }
-
+.research__recipes__submit :focus{
+  background-color: #FFD15B;
+}
 .search__fields{
     display: flex;
     flex-direction: row;
@@ -182,9 +185,10 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 56px;
     width: 100%;
     background-color: #fff;
+    border: none;
     font-size: 1.1rem;
     font-weight: 500;
     font-family: "Manrope", sans-serif;

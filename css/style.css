@@ -53,6 +53,16 @@ h1 {
     z-index: 1;
     display: flex;
 }
+
+.recipes_count{
+  color: var(--Black, #1B1B1B);
+  font-family: Anton;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 70px;
+}
 .tag {
     width: 10%;
     height: 40px;
@@ -146,7 +156,7 @@ h1 {
 .filter_section {
     display: flex;
     justify-content: space-between;
-    position: relative; /* Додајте го ова */
+    position: relative; 
 }
 
 
@@ -154,17 +164,17 @@ h1 {
 .dropdown {
     position: absolute;
     width: 150px;
-    border-radius: 10px;
+    border-radius: 11px;
     background-color: #fff;
+    outline: white;
+    border: none;
     overflow: hidden;
-    z-index: 2; /* Додајте го z-index */
+    z-index: 2; 
 }
 
-    .dropdown {
-      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
-    }
+
   
-  .dropdown_btn {
+.dropdown_btn {
     padding: 15px;
     display: flex;
     flex-direction: row;
@@ -176,10 +186,10 @@ h1 {
     font-size: 1.1rem;
     font-weight: 500;
     font-family: "Manrope", sans-serif;
-  }
-  .dropdown_btn:hover, .dropdown_btn:focus {
-    background-color: #FFD15B;
-  }
+}
+.dropdown_btn:hover, .dropdown_btn:focus {
+  background-color: #FFD15B;
+}
 
   .dropdown .dropdown_content {
     overflow-y: scroll;

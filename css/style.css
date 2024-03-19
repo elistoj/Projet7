@@ -82,7 +82,7 @@ h1 {
   }
   .tag button {
     position: relative;
-    right: 0;
+    right:-30px;
     background-color: #FFD15B;
   }
   .tag button:hover::after, .tag button:focus::after {

@@ -28,6 +28,8 @@ export const updateWithFilteredRecipes = filteredRecipes => {
                 templateCard.createCard(); // Ajout de la carte à la section des cartes de recette dans le DOM
             });
     }
+  
+
 };
 //Cette fonction updateWithFilteredRecipes met à jour l'affichage des recettes dans la section
 // des cartes de recette en fonction des recettes filtrées. 

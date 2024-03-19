@@ -1078,7 +1078,7 @@ export const recipes = [
         "time": 60,
         "description":"Mettre tous les ingrédients dans une cocotte. ajouter de l'eau pour recouvrir l'ensemble et laisser cuire à petit feu pour 1 heure. Passer au mixer. Salez, poivrez. C'est prêt",
         "appliance": "Mixer",
-        "ustensils":["casserole", "cuillère en bois"]
+        "ustensils":["casserole", "cuillère en bois","cocotte"]
     },
     {
         "id": 31,

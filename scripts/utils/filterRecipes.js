@@ -34,7 +34,7 @@ export const filterRecipes = (recipes, tags, inputValue) => {
     });
 
     // Met à jour les recettes actuelles avec toutes les recettes disponibles
-    updateCurrentRecipes(allRecipes);
+    updateCurrentRecipes(filteredRecipes);
 
     // Met à jour l'affichage avec les recettes filtrées
     updateWithFilteredRecipes(filteredRecipes);

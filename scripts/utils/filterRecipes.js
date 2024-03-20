@@ -1,6 +1,6 @@
 // Import des fonctions nécessaires depuis d'autres fichiers
 import { Normalization } from "./normalization.js";
-import { updateWithFilteredRecipes } from "./updateWithFilteredRecipes.js";
+import { UpdateFilteredRecipes } from "./UpdateFilteredRecipes.js";
 import { updateCurrentRecipes } from "./UpdateCurrentRecipes.js";
 
 // Fonction principale pour filtrer les recettes
@@ -36,7 +36,7 @@ export const filterRecipes = (recipes, tags, inputValue) => {
     updateCurrentRecipes(filteredRecipes);
 
     // Met à jour l'affichage avec les recettes filtrées
-    updateWithFilteredRecipes(filteredRecipes);
+    UpdateFilteredRecipes(filteredRecipes);
 };
 // Ce code importe plusieurs fonctions depuis d'autres fichiers, puis définit une fonction filterRecipes 
 // qui prend en entrée une liste de recettes, des tags de filtre et une valeur de recherche. Il filtre ensuite 

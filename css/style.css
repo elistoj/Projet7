@@ -72,6 +72,7 @@ h1 {
     background-color: #FFD15B;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin-left: 150px;
@@ -82,7 +83,7 @@ h1 {
   }
   .tag button {
     position: relative;
-    right:-30px;
+    right:-15px;
     background-color: #FFD15B;
     border:none
   }
@@ -303,8 +304,6 @@ h1 {
   main .tag_section {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
     margin-top: 20px;
   }
   

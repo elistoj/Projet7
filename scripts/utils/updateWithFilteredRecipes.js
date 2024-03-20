@@ -1,8 +1,22 @@
 // Import des classes nécessaires depuis d'autres fichiers
 import CardRecipe from "../cards/CardRecipe.js";
 import Recipe from "../cards/Recipe.js";
-import { extractFilteredItems } from "../utils/extractFilteredItems.js";
 import { dropdowns } from "../pages/index.js";
+import { Normalization } from "../utils/normalization.js";
+
+const extractFilteredItems = filteredRecipes => {
+    const filteredItems = [];
+
+    filteredRecipes.forEach(recipe => {
+        filteredItems.push(Normalization(recipe.appliance));
+
+        recipe.ustensils.forEach(ustensil => filteredItems.push(Normalization(ustensil)));
+
+        recipe.ingredients.forEach(ingredient => filteredItems.push(Normalization(ingredient.ingredient)));
+    });
+
+    return filteredItems;
+};
 
 export const updateWithFilteredRecipes = filteredRecipes => {
 

@@ -2,7 +2,6 @@
 import { Normalization } from "./normalization.js";
 import { updateWithFilteredRecipes } from "./updateWithFilteredRecipes.js";
 import { updateCurrentRecipes } from "./UpdateCurrentRecipes.js";
-import { allRecipes } from "../pages/index.js";
 
 // Fonction principale pour filtrer les recettes
 export const filterRecipes = (recipes, tags, inputValue) => {

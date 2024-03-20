@@ -1,5 +1,5 @@
 // Import des fonctions nécessaires depuis d'autres fichiers
-import { updateWithFilteredRecipes } from "./updateWithFilteredRecipes.js";
+import { UpdateFilteredRecipes } from "./UpdateFilteredRecipes.js";
 import { updateCurrentRecipes } from "./UpdateCurrentRecipes.js";
 import { Normalization } from "./normalization.js";
 
@@ -32,10 +32,10 @@ export const filterRecipesByLabels = (recipes, tags) => {
     updateCurrentRecipes(filteredRecipes);
 
     // Met à jour l'affichage avec les recettes filtrées
-    updateWithFilteredRecipes(filteredRecipes);
+    UpdateFilteredRecipes(filteredRecipes);
 }; 
 //Ce code définit une fonction filterRecipesByLabels qui prend en entrée une liste de recettes et des étiquettes de filtre. Il filtre ensuite les recettes
 // en fonction de ces étiquettes et met à jour le tableau recipesFilteredByLabels avec les recettes filtrées. 
-//Enfin, il met à jour l'affichage avec les recettes filtrées en appelant les fonctions updateCurrentRecipes et updateWithFilteredRecipes.
+//Enfin, il met à jour l'affichage avec les recettes filtrées en appelant les fonctions updateCurrentRecipes et UpdateFilteredRecipes.
 
 

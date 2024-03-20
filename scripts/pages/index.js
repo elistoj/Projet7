@@ -2,7 +2,6 @@ import CardRecipe from '../cards/CardRecipe.js'; // Importe la classe CardRecipe
 import { performSearch } from '../utils/performSearch.js'; // Importe la fonction performSearch pour effectuer une recherche
 import Dropdown from '../utils/Dropdown.js';
 import {openCloseDropdown} from '../utils/dropdownEvent.js';
-import {extractUniqueProperties} from '../utils/extractUniqueProperties.js';
 import { recipes } from '../../datas/recipes.js'; // Importe les données de recettes à partir du fichier recipes.js
 
 // Fonction asynchrone pour récupérer des recettes
@@ -25,7 +24,34 @@ export const dropdowns = [];
 // Récupère l'élément HTML correspondant à la zone de recherche de recettes
 export const searchInput = document.querySelector('#search-recipe');
 
+// Cette fonction `extractUniqueProperties` prend en entrée un tableau d'objets représentant des recettes et retourne un objet contenant les propriétés uniques (ingrédients, appareils, ustensiles) de ces recettes.
 
+// La fonction initialise un objet `uniqueProperties` contenant trois ensembles (Set) vides pour stocker les valeurs uniques des ingrédients, des appareils et des ustensiles.
+
+export const extractUniqueProperties = recipes => {
+    const uniqueProperties = {
+        ingredients: new Set(),
+        appliances: new Set(),
+        ustensils: new Set()
+    };
+
+    const addPropertyToSet = (propertySet, value) => propertySet.add(value.toLowerCase()) ;
+    recipes.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => addPropertyToSet(uniqueProperties.ingredients, ingredient.ingredient));
+        addPropertyToSet(uniqueProperties.appliances, recipe.appliance);
+        recipe.ustensils.forEach(ustensil => addPropertyToSet(uniqueProperties.ustensils, ustensil));
+    });
+
+
+
+    // Ensemble set en tableau et trie par ordre alphabétique
+    const propertiesArray = {};
+    for (const property in uniqueProperties) {
+        propertiesArray[property] = Array.from(uniqueProperties[property]).sort();
+    }
+
+    return propertiesArray;
+};
 const displayDropdownSection = () => {
 
     const numberOfRecipes = document.querySelector('.recipes_count');

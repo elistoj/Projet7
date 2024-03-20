@@ -63,6 +63,13 @@ h1 {
   line-height: normal;
   margin-top: 70px;
 }
+main .tag_section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-right: 430px;
+  gap: 5px;
+}
 .tag {
     width: 120px;
     height: 25px;
@@ -75,7 +82,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-left: 150px;
+    margin-left: 170px;
   }
   .tag h3 {
     font-size: 1.1rem;
@@ -97,7 +104,9 @@ h1 {
     font-size: 1.2rem;
     color: #000;
   }
- 
+ .ustensil{
+  margin-left: 250px;
+ }
 .header_photo{
     object-fit: cover;
     position: relative;
@@ -301,11 +310,7 @@ h1 {
   .dropdown .rotate {
     transform: rotate(180deg);
   }
-  main .tag_section {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
+
   
 /*cards*/
 .card_section{

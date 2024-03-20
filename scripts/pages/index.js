@@ -1,9 +1,14 @@
 import CardRecipe from '../cards/CardRecipe.js'; // Importe la classe CardRecipe pour créer les cartes de recettes
-import { fetchRecipes } from '../utils/fetchRecipes.js'; // Importe la fonction fetchRecipes pour récupérer les recettes
 import { performSearch } from '../utils/performSearch.js'; // Importe la fonction performSearch pour effectuer une recherche
 import Dropdown from '../utils/Dropdown.js';
 import {openCloseDropdown} from '../utils/dropdownEvent.js';
 import {extractUniqueProperties} from '../utils/extractUniqueProperties.js';
+import { recipes } from '../../datas/recipes.js'; // Importe les données de recettes à partir du fichier recipes.js
+
+// Fonction asynchrone pour récupérer des recettes
+ const fetchRecipes = async () => {
+    return recipes; // Retourne les données de recettes
+};
 
 // Récupère toutes les recettes via la fonction fetchRecipes et les stocke dans la variable allRecipes
 export const allRecipes = await fetchRecipes();

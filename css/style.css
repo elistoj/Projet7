@@ -148,12 +148,13 @@ main .tag_section {
     font-size: 20px;
     padding-top: 15px;
 }
+
 .research__recipes__submit{
     background-color: #FFF;
     border: #FFF;
     border-radius: 11px;
 }
-.research__recipes__submit :focus{
+.research__recipes__submit :hover{
   background-color: #FFD15B;
 }
 .search__fields{

@@ -9,24 +9,33 @@ export default class Tag {
     }
 
     // Méthode pour créer un tag dans l'interface utilisateur
-    createTag(tags) {
-        const tagSection = document.querySelector('.tag_section');
-        const tag = document.createElement('div');
-        tag.classList.add('tag');
-        tag.innerHTML = `
-            ${this.name}
-            <button class="remove_tag_btn"></button>
-        `;
-        tagSection.appendChild(tag);
+ // Crée un tag avec le nom spécifié
+createTag(tags) {
+    // Sélection de la section des tags dans le DOM
+    const tagSection = document.querySelector('.tag_section');
     
-        // Селектирање на копчето за бришење на тагот во тагот
-        const removeBtn = tag.querySelector('.remove_tag_btn');
+    // Création d'un élément de tag
+    const tag = document.createElement('div');
+    tag.classList.add('tag'); // Ajout de la classe 'tag' à l'élément de tag
     
-        // Додавање на слушател за клик на копчето за бришење
-        removeBtn.addEventListener('click', () => this.removeTag(tag));
+    // Ajout du nom du tag et d'un bouton de suppression à l'élément de tag
+    tag.innerHTML = `
+        ${this.name} 
+        <button class="remove_tag_btn"></button>
+    `;
     
-        return tag;
-    }
+    // Ajout de l'élément de tag à la section des tags dans le DOM
+    tagSection.appendChild(tag);
+
+    // Sélection du bouton de suppression à l'intérieur du tag
+    const removeBtn = tag.querySelector('.remove_tag_btn');
+
+    // Ajout d'un écouteur d'événements pour le clic sur le bouton de suppression
+    removeBtn.addEventListener('click', () => this.removeTag(tag));
+
+    return tag; // Retourne l'élément de tag créé
+}
+
     
     // Méthode pour supprimer un tag
     removeTag(tag) {

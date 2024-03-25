@@ -2,7 +2,7 @@ import { displayRecipesCards } from "../pages/index.js"; // Importe la fonction 
 import { selectedTags } from "../pages/index.js"; // Importe le tableau des tags sélectionnés
 import { allRecipes } from "../pages/index.js"; // Importe le tableau de toutes les recettes
 import { filterRecipesByLabels, recipesFilteredByLabels } from "./filterRecipesByLabels.js"; // Importe les fonctions pour filtrer les recettes par tags
-import { updateCurrentRecipes } from "./UpdateCurrentRecipes.js"; // Importe la fonction pour mettre à jour les recettes actuelles
+import { updateCurrentRecipes } from "./UpdateRecipes.js"; // Importe la fonction pour mettre à jour les recettes actuelles
 import { dropdowns } from "../pages/index.js"; // Importe le tableau des éléments de menu déroulant
 import { filterRecipesByText } from "./filterRecipesByText.js"; // Importe la fonction pour filtrer les recettes par texte
 

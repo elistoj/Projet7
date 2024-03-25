@@ -1,7 +1,7 @@
 // Import des fonctions nécessaires depuis d'autres fichiers
-import { updateCurrentRecipes } from "./UpdateCurrentRecipes.js";
+import { updateCurrentRecipes } from "./UpdateRecipes.js";
 import { Normalization } from "./normalization.js";
-import { UpdateFilteredRecipes } from "./UpdateFilteredRecipes.js";
+import { UpdateFilteredRecipes } from "./UpdateRecipes.js";
 
 // Fonction pour filtrer les recettes en fonction du texte saisi
  export const filterRecipesByText = (recipes, inputValue) => {

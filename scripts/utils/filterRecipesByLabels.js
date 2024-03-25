@@ -1,6 +1,5 @@
 // Import des fonctions nécessaires depuis d'autres fichiers
-import { UpdateFilteredRecipes } from "./UpdateFilteredRecipes.js";
-import { updateCurrentRecipes } from "./UpdateCurrentRecipes.js";
+import { UpdateFilteredRecipes, updateCurrentRecipes } from "./UpdateRecipes.js";
 import { Normalization } from "./normalization.js";
 
 // Déclaration d'un tableau pour stocker les recettes filtrées par étiquettes

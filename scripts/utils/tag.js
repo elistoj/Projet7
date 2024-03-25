@@ -1,7 +1,7 @@
 // Import des variables nécessaires depuis d'autres fichiers
 import { selectedTags, allRecipes } from "../pages/index.js";
-import { filterRecipes } from "./filterRecipes.js";
-
+import { filterRecipesByLabels } from "./filterRecipesByLabels.js";
+import { filterRecipesByText } from "./filterRecipesByText.js";
 // Classe représentant un tag
 export default class Tag {
     constructor(name) {
@@ -50,7 +50,8 @@ createTag(tags) {
 
         // Filtrer les recettes avec les tags sélectionnés et la valeur de recherche actuelle
         const inputValue = document.querySelector('#search-recipe').value;
-        filterRecipes(allRecipes, selectedTags, inputValue);
+        filterRecipesByLabels(allRecipes, selectedTags); // utilise filterRecipesByLabels
+        filterRecipesByText(allRecipes, inputValue); // utilise filterRecipesByText
 
         // Suppression du tag du DOM
         tag.remove();

@@ -52,7 +52,7 @@ export const UpdateFilteredRecipes = filteredRecipes => {
     // Mise à jour des éléments des menus déroulants
     dropdowns.forEach(dropdown => dropdown.updateItems(filteredItems));
 
-}; // Fin de la fonction UpdateFilteredRecipes
+}; 
 //Cette fonction UpdateFilteredRecipes met à jour l'affichage des recettes dans la section
 // des cartes de recette en fonction des recettes filtrées. 
 //Si aucune recette n'est trouvée, un message approprié est affiché.

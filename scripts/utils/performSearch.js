@@ -45,6 +45,33 @@ export function performSearch() {
 
     // Ajout d'un écouteur d'événement pour la saisie de texte dans le champ de recherche
     searchInput.addEventListener('input', updateContent);
+    const clearButton = document.querySelector('#clear-search');
+
+    // Fonction pour afficher/masquer le bouton "X"
+    function toggleClearButton() {
+        if (searchInput.value.trim() === '') {
+            clearButton.style.display = 'none'; // Masquer le bouton s'il n'y a pas de texte dans le champ
+        } else {
+            clearButton.style.display = 'block'; // Afficher le bouton s'il y a du texte dans le champ
+        }
+    }
+    
+    // Ajout d'un écouteur d'événements sur le champ de recherche
+    searchInput.addEventListener('input', toggleClearButton);
+    
+    // Ajout d'un écouteur d'événements sur le bouton "X"
+    clearButton.addEventListener('click', function() {
+        searchInput.value = ''; // Effacer le texte dans le champ de recherche
+        toggleClearButton(); // Réafficher ou masquer le bouton "X" en fonction du texte
+    });
+    
+    // Ajout d'un écouteur d'événements supplémentaire pour la perte de focus sur le champ de recherche
+    searchInput.addEventListener('blur', toggleClearButton);
+    
+    // Masquer initialement le bouton "X" s'il n'y a pas de texte dans le champ
+    toggleClearButton();
+    
+
 
     // Ajout d'un écouteur d'événement pour le clic sur le bouton de recherche
     btnSearch.addEventListener('click', function (event) {

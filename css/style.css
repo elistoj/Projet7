@@ -66,9 +66,13 @@ h1 {
 main .tag_section {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-start;
+
   margin-top: 20px;
   margin-right: 430px;
-  gap: 5px;
+  gap: 20px;
+  height: 100px;
 }
 .tag {
   width: 120px;
@@ -104,9 +108,7 @@ main .tag_section {
   font-size: 1.2rem;
   color: #000;
 }
-.ustensil{
-margin-left: 250px;
-}
+
 .header_photo{
   object-fit: cover;
   position: relative;
@@ -137,7 +139,20 @@ margin-left: 250px;
   outline: none; 
   border-color: #FFF; 
 }
+.search-container {
+  position: relative;
+}
 
+#clear-search {
+  position: absolute;
+  right: 100px;
+  font-size: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  border: none;
+  background: none;
+}
 .fa-search{
   color: #FFF;
   width: 51px;

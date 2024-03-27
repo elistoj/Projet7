@@ -42,9 +42,6 @@ export function performSearch() {
             resetContent(); // Si le champ de recherche est vide et aucun tag n'est sélectionné, réinitialise le contenu de la page
         }
     };
-
-    // Ajout d'un écouteur d'événement pour la saisie de texte dans le champ de recherche
-    searchInput.addEventListener('input', updateContent);
     const clearButton = document.querySelector('#clear-search');
 
     // Fonction pour afficher/masquer le bouton "X"
@@ -71,7 +68,8 @@ export function performSearch() {
     // Masquer initialement le bouton "X" s'il n'y a pas de texte dans le champ
     toggleClearButton();
     
-
+    // Ajout d'un écouteur d'événement pour la saisie de texte dans le champ de recherche
+    searchInput.addEventListener('input', updateContent);
 
     // Ajout d'un écouteur d'événement pour le clic sur le bouton de recherche
     btnSearch.addEventListener('click', function (event) {

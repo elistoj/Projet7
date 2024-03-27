@@ -9,7 +9,7 @@ import { UpdateFilteredRecipes } from "./UpdateRecipes.js";
     const normalizedInputValue = Normalization(inputValue);
 
     // Filtrage des recettes en fonction du texte saisi
-    const filteredRecipes = recipes.filter(recipe => {
+    const filteredRecipesByInput = recipes.filter(recipe => {
         const { description, ingredients, name } = recipe;
 
         return (
@@ -20,8 +20,8 @@ import { UpdateFilteredRecipes } from "./UpdateRecipes.js";
     });
 
     // Met à jour les recettes actuelles avec les recettes filtrées par texte
-    updateCurrentRecipes(filteredRecipes);
+    updateCurrentRecipes(filteredRecipesByInput);
 
     // Met à jour l'affichage avec les recettes filtrées par texte
-    UpdateFilteredRecipes(filteredRecipes);
+    UpdateFilteredRecipes(filteredRecipesByInput);
 };

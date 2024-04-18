@@ -3,6 +3,7 @@ import { performSearch } from '../utils/performSearch.js'; // Importe la fonctio
 import Dropdown from '../utils/Dropdown.js';
 import {openCloseDropdown} from '../utils/dropdownEvent.js';
 import { recipes } from '../../datas/recipes.js'; // Importe les données de recettes à partir du fichier recipes.js
+import Tag from '../utils/tag.js';
 
 // Fonction asynchrone pour récupérer des recettes
  const fetchRecipes = async () => {
@@ -23,10 +24,6 @@ export const dropdowns = [];
 
 // Récupère l'élément HTML correspondant à la zone de recherche de recettes
 export const searchInput = document.querySelector('#search-recipe');
-
-// Cette fonction `extractUniqueProperties` prend en entrée un tableau d'objets représentant des recettes et retourne un objet contenant les propriétés uniques (ingrédients, appareils, ustensiles) de ces recettes.
-
-// La fonction initialise un objet `uniqueProperties` contenant trois ensembles (Set) vides pour stocker les valeurs uniques des ingrédients, des appareils et des ustensiles.
 
 export const extractUniqueProperties = recipes => {
     const uniqueProperties = {
@@ -54,16 +51,91 @@ export const extractUniqueProperties = recipes => {
 };
 const displayDropdownSection = () => {
 
+
+    dropdowns.push(new Dropdown('Ingrédients', extractUniqueProperties(allRecipes).ingredients, 'ingredients'));
+    dropdowns.push(new Dropdown('Appareils', extractUniqueProperties(allRecipes).appliances, 'appliances'));
+    dropdowns.push(new Dropdown('Ustensiles', extractUniqueProperties(allRecipes).ustensils, 'ustensiles'));
+    
+    const filterSection = document.querySelector('.filter_section');
+
+    dropdowns.forEach(dropdown => {
+        const dropdownContainer = dropdown.createDropdown();
+        const selectedItems = getSelectedTagsForDropdown(dropdown.name);
+        const tags = selectedItems.map(tag => new Tag(tag, dropdown.id));
+    
+        const tagSection = document.createElement('div');
+        tagSection.classList.add('tag_section');
+
+        const ingredientsTags = document.createElement('div');
+        const appliancesTags = document.createElement('div');
+        const ustensilesTags = document.createElement('div');
+        ingredientsTags.classList.add('ingredients_tags');        
+        appliancesTags.classList.add('appliances_tags');
+        ustensilesTags.classList.add('ustensiles_tags');
+        
+
+        tags.forEach(tag => {
+            const tagElement = tag.createTag(selectedTags, dropdown.id); 
+            if (dropdown.name === 'Ingrédients') {
+                ingredientsTags.appendChild(tagElement);
+            } else if (dropdown.name === 'Appareils') {
+                appliancesTags.appendChild(tagElement);
+            } else if (dropdown.name === 'Ustensiles') {
+                ustensilesTags.appendChild(tagElement);
+            }
+        });
+
+        tagSection.appendChild(ingredientsTags);
+        tagSection.appendChild(appliancesTags);
+        tagSection.appendChild(ustensilesTags);
+
+        if (selectedItems.length > 0) {
+            filterSection.appendChild(dropdownContainer);
+            filterSection.appendChild(tagSection);
+        } else {
+            filterSection.appendChild(dropdownContainer); 
+        }
+    });
+
     const numberOfRecipes = document.querySelector('.recipes_count');
     numberOfRecipes.textContent = `${allRecipes.length} recettes`;
-
-    dropdowns.push(new Dropdown('Ingrédients', extractUniqueProperties(allRecipes).ingredients));
-    dropdowns.push(new Dropdown('Appareils', extractUniqueProperties(allRecipes).appliances));
-    dropdowns.push(new Dropdown('Ustensiles', extractUniqueProperties(allRecipes).ustensils));
-
-    const filterSection = document.querySelector('.filter_section');
-    dropdowns.forEach(dropdown => filterSection.insertBefore(dropdown.createDropdown(), numberOfRecipes));
+    filterSection.appendChild(numberOfRecipes); 
 };
+
+export const dropdownName = (dropdownName) => {
+    const uniqueProperties = extractUniqueProperties(allRecipes);
+
+    switch(dropdownName) {
+        case 'Ingrédients':
+            return selectedTags.filter(tag => uniqueProperties.ingredients.includes(tag));
+        case 'Appareils':
+            return selectedTags.filter(tag => uniqueProperties.appliances.includes(tag));
+        case 'Ustensiles':
+            return selectedTags.filter(tag => uniqueProperties.ustensils.includes(tag));
+        default:
+            return [];
+    }
+};
+
+
+
+
+
+// Fonction pour filtrer les balises sélectionnées pour une liste déroulante spécifique
+const getSelectedTagsForDropdown = (dropdownName) => {
+    return selectedTags.filter(tag => {
+        if (dropdownName === 'Ingrédients') {
+            return extractUniqueProperties(allRecipes).ingredients.includes(tag);
+        } else if (dropdownName === 'Appareils') {
+            return extractUniqueProperties(allRecipes).appliances.includes(tag);
+        } else if (dropdownName === 'Ustensiles') {
+            return extractUniqueProperties(allRecipes).ustensils.includes(tag);
+        }
+        
+    });
+};
+
+
 
 
 // Fonction asynchrone pour afficher les cartes de recettes
@@ -80,12 +152,13 @@ export const displayRecipesCards = async () => {
     }
 };
 
-// Appelle la fonction pour afficher les cartes de recettes
-displayRecipesCards();
+
 
 // Appelle la fonction pour exécuter la recherche
 performSearch();
 
 displayDropdownSection ();
+// Appelle la fonction pour afficher les cartes de recettes
 
+displayRecipesCards();
 openCloseDropdown();

@@ -59,14 +59,7 @@ h1 {
   line-height: normal;
   margin-right: 120px;
 }
-main .tag_section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-left: auto;
-  gap:20px;
 
-}
 .tag {
   width: 150px;
   height: 25px;
@@ -80,7 +73,6 @@ main .tag_section {
   justify-content: space-between;
   align-items: center;
   margin-left: 150px;
-  margin-right: 16px;
 }
 .tag h3 {
   font-size: 1.1rem;
@@ -102,7 +94,42 @@ main .tag_section {
   font-size: 1.2rem;
   color: #000;
 }
+[data-dropdown="Ingrédients"] {
+  display: flex; 
+  margin-bottom: 10px;
+}
+[data-dropdown="Appareils"] {
+  display: flex; 
+  margin-bottom: 10px;
+}
+[data-dropdown="Ustensiles"] {
+  display: flex; 
+  margin-bottom: 10px;
+}
 
+.tag_section {
+  display: flex;
+}
+
+.tag-column {
+  width: calc(33.33% - 10px); 
+  margin-right: 10px; 
+}
+.tag-column-ustens{
+  display: block;
+}
+.tag-column-ingred {
+  display: block;  
+}
+.tag-column-appar{
+  display: block;
+
+}
+.tag-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: 25px; 
+}
 .header_photo{
   object-fit: cover;
   position: relative;

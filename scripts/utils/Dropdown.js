@@ -132,8 +132,8 @@ export default class Dropdown {
     // Méthode pour ajouter un tag à la liste des tags sélectionnés
     addTag(tagText) {
         if (!selectedTags.includes(tagText)) { // Vérifier si le tag n'existe pas déjà dans la liste des tags sélectionnés
-            const tag = new Tag(tagText); // Créer une nouvelle instance de la classe Tag avec le texte du tag
-            tag.createTag(); // Créer et afficher le tag dans l'interface utilisateur
+            const tag = new Tag(tagText); // Créer une instance de la classe Tag avec le texte du tag
+            tag.createTag(selectedTags, this.name); // Appeler la méthode createTag avec les tags sélectionnés et le nom du dropdown
             selectedTags.push(tagText); // Ajouter le tag à la liste des tags sélectionnés
         }
         filterRecipesByLabels(currentRecipes, selectedTags); // Filtrer les recettes en fonction des tags sélectionnés
